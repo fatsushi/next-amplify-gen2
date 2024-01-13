@@ -1,4 +1,4 @@
-import { defineAuth } from '@aws-amplify/backend';
+import { defineAuth } from "@aws-amplify/backend"
 
 /**
  * Define and configure your auth resource
@@ -7,23 +7,26 @@ import { defineAuth } from '@aws-amplify/backend';
  */
 export const auth = defineAuth({
   loginWith: {
-    email: true,
-    // add social providers
-    // externalProviders: {
-    /**
-     * first, create your secrets using `amplify sandbox secret`
-     * then, import `secret` from `@aws-amplify/backend`
-     * @see https://docs.amplify.aws/gen2/deploy-and-host/sandbox-environments/features/#setting-secrets
-     */
-    // loginWithAmazon: {
-    //   clientId: secret('LOGINWITHAMAZON_CLIENT_ID'),
-    //   clientSecret: secret('LOGINWITHAMAZON_CLIENT_SECRET'),
-    // }
-    // configure callback and logout URLs
-    // callbackUrls: ['http://localhost:3000'],
-    // logoutUrls: ['http://localhost:3000'],
-    // },
+    email: {
+      verificationEmailSubject: "Welcome! Verify your email",
+    },
   },
+  // add social providers
+  // externalProviders: {
+  /**
+   * first, create your secrets using `amplify sandbox secret`
+   * then, import `secret` from `@aws-amplify/backend`
+   * @see https://docs.amplify.aws/gen2/deploy-and-host/sandbox-environments/features/#setting-secrets
+   */
+  // loginWithAmazon: {
+  //   clientId: secret('LOGINWITHAMAZON_CLIENT_ID'),
+  //   clientSecret: secret('LOGINWITHAMAZON_CLIENT_SECRET'),
+  // }
+  // configure callback and logout URLs
+  // callbackUrls: ['http://localhost:3000'],
+  // logoutUrls: ['http://localhost:3000'],
+  // },
+  //},
   /**
    * enable multifactor authentication
    * @see https://docs.amplify.aws/gen2/build-a-backend/auth/manage-mfa
@@ -41,4 +44,4 @@ export const auth = defineAuth({
     //   required: false,
     // },
   },
-});
+})
