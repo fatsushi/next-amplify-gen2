@@ -21,6 +21,19 @@ export default function TodoList() {
   return (
     <div>
       <h1>Todos</h1>
+      <button
+        onClick={async () => {
+          const { errors, data: newTodo } = await client.models.Todo.create({
+            content: window.prompt("title"),
+            done: false,
+            priority: "medium",
+          })
+          console.log(errors, newTodo)
+        }}
+      >
+        Create
+      </button>
+
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
