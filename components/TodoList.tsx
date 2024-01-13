@@ -15,7 +15,10 @@ export default function TodoList() {
   }
 
   useEffect(() => {
-    listTodos()
+    const sub = client.models.Todo.observeQuery().subscribe(({ items }) => {
+      setTodos([...items])
+    })
+    return () => sub.unsubscribe()
   }, [])
 
   return (
@@ -23,12 +26,12 @@ export default function TodoList() {
       <h1>Todos</h1>
       <button
         onClick={async () => {
-          const { errors, data: newTodo } = await client.models.Todo.create({
+          const { errors, data: cTodo } = await client.models.Todo.create({
             content: window.prompt("title"),
             done: false,
             priority: "medium",
           })
-          console.log(errors, newTodo)
+          console.log(errors, cTodo)
         }}
       >
         Create
